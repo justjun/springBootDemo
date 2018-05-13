@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+	<context id="context1">
+		<commentGenerator>
+			<!-- 去掉自动生成的注释 -->
+			<property name="suppressDate" value="true" />
+			<property name="suppressAllComments" value="true" />
+		</commentGenerator>
+
+		<jdbcConnection connectionURL="jdbc:mysql://121.40.49.29:2000/longchou-haoche"
+			driverClass="com.mysql.jdbc.Driver" password="lcd123456" userId="jishu" />
+		<javaModelGenerator targetPackage="com.hwj.domain"
+			targetProject="demo\src\main\java" />
+		<sqlMapGenerator targetPackage="mappers"
+			targetProject="demo\src\main\resources" />
+		<javaClientGenerator targetPackage="com.hwj.mappers"
+			targetProject="demo\src\main\java" type="XMLMAPPER" />
+		<table tableName="t_app_token" domainObjectName="AppToken"
+			 enableCountByExample="false"
+			enableUpdateByExample="false" enableDeleteByExample="false"
+			enableSelectByExample="false" selectByExampleQueryId="false">
+			<property name="useActualColumnNames" value="false"/>
+			<columnRenamingRule searchString="^T" replaceString=""/>
+
+		</table>
+	</context>
+</generatorConfiguration>

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.hwj.mappers.AppTokenMapper">
+  <resultMap id="BaseResultMap" type="com.hwj.domain.AppToken">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="broker_id" jdbcType="INTEGER" property="brokerId" />
+    <result column="token" jdbcType="VARCHAR" property="token" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="device_no" jdbcType="VARCHAR" property="deviceNo" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, broker_id, token, create_time, device_no
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_app_token
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_app_token
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.hwj.domain.AppToken">
+    insert into t_app_token (id, broker_id, token, 
+      create_time, device_no)
+    values (#{id,jdbcType=INTEGER}, #{brokerId,jdbcType=INTEGER}, #{token,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{deviceNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hwj.domain.AppToken">
+    insert into t_app_token
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="brokerId != null">
+        broker_id,
+      </if>
+      <if test="token != null">
+        token,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="deviceNo != null">
+        device_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="brokerId != null">
+        #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceNo != null">
+        #{deviceNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hwj.domain.AppToken">
+    update t_app_token
+    <set>
+      <if test="brokerId != null">
+        broker_id = #{brokerId,jdbcType=INTEGER},
+      </if>
+      <if test="token != null">
+        token = #{token,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deviceNo != null">
+        device_no = #{deviceNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hwj.domain.AppToken">
+    update t_app_token
+    set broker_id = #{brokerId,jdbcType=INTEGER},
+      token = #{token,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      device_no = #{deviceNo,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  
+  <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_app_token
+    where broker_id = #{brokerId,jdbcType=INTEGER}
+  </select>
+</mapper>
