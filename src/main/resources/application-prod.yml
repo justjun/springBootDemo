@@ -1,2 +1,12 @@
 server:
-  port: 8080
+  port: 8082
+  
+#数据库设置  
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource  
+    driverClassName: com.mysql.jdbc.Driver  
+    url: jdbc:mysql://121.40.49.29:2000/longchou-haoche
+    username: jishu  
+    password: lcd123456
+      

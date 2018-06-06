@@ -1,8 +1,7 @@
 spring:
   profiles:
-    active: test
+    active: dev
     
-#--------------------------  
 # 下面为连接池的补充设置，应用到上面所有数据源中  
 # 初始化大小，最小，最大  
   datasource:
@@ -29,6 +28,19 @@ spring:
 # 合并多个DruidDataSource的监控数据  
 #   useGlobalDataSourceStat: true
 
+# redis 配置
+  redis:
+    host: 121.40.49.29
+    port: 6379
+    password: abc123456
+# 缓存过期时间，单位毫秒
+  cache:
+    redis:
+      time-to-live: 60000
+
+# 缓存类型（ehcache、redis）
+    type: redis
+
 # thymeleaf
   thymeleaf:
     cache: false
@@ -54,3 +66,4 @@ mybatis:
 
 logging:
   config: classpath:logback-spring.xml
+  
